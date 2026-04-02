@@ -73,7 +73,7 @@ func (a *API) GetMe(ctx context.Context) error {
 
 func (a *API) GetUpdates(ctx context.Context, offset int64, timeout int) ([]Update, error) {
 	q := url.Values{}
-	if offset > 0 {
+	if offset != 0 {
 		q.Set("offset", strconv.FormatInt(offset, 10))
 	}
 	if timeout > 0 {

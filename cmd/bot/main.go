@@ -43,6 +43,10 @@ func main() {
 
 	var pendingCfg *config.Config
 	var offset int64
+	if offset, err = bootstrapOffset(tg); err != nil {
+		log.Printf("bootstrap offset failed, fallback to 0: %v", err)
+		offset = 0
+	}
 	for {
 		ctx, cancel := context.WithTimeout(context.Background(), 65*time.Second)
 		updates, err := tg.GetUpdates(ctx, offset, 60)
@@ -119,6 +123,19 @@ func main() {
 			_ = tg.SendMessage(context.Background(), msg.Chat.ID, reply)
 		}
 	}
+}
+
+func bootstrapOffset(tg *telegram.API) (int64, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	updates, err := tg.GetUpdates(ctx, -1, 0)
+	if err != nil {
+		return 0, err
+	}
+	if len(updates) == 0 {
+		return 0, nil
+	}
+	return updates[len(updates)-1].UpdateID + 1, nil
 }
 
 func buildAgent(cfg config.Config) (*agent.Client, error) {
