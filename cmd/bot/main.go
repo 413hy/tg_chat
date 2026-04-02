@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -193,8 +192,7 @@ func handleAdminPrivate(tg *telegram.API, chatID int64, text string, current con
 		}
 		return pending, send("配置已保存。重启后生效；如果要立即生效，请发送 /restart_now")
 	case text == "/restart_now":
-		_ = send("收到重启指令，进程将退出，请由 systemd/supervisor/docker 拉起。")
-		os.Exit(0)
+		return pending, send("当前版本已禁用机器人内自杀式重启，避免服务中断。请在服务器执行: rc-service tg_chat restart")
 	}
 
 	parts := strings.SplitN(text, " ", 2)

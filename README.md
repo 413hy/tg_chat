@@ -46,7 +46,7 @@ go run ./cmd/bot -config config.json
 - `/set_api_key <key>` 设置密钥
 - `/set_agent_file <path>` 设置 agent 提示词文件路径
 - `/save` 将当前内存配置写入配置文件（提示“重启后生效”）
-- `/restart_now` 立即退出进程（配合 systemd/supervisor/docker restart 自动拉起）
+- `/restart_now` 返回手工重启提示（为避免服务中断，已禁用 bot 进程内自杀式重启）
 
 ## 响应规则
 
@@ -68,7 +68,7 @@ go run ./cmd/bot -config config.json
 ```text
 /set_agent_file agents/<name>/system_prompt.md
 /save
-/restart_now
+/restart_now（返回手工重启命令）
 ```
 
 
