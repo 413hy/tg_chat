@@ -14,7 +14,7 @@ update-ca-certificates
 
 ```bash
 cd /opt
-git clone <你的仓库地址> tg_chat
+git clone -b codex/clarify-project-goals-and-objectives https://github.com/413hy/tg_chat.git
 cd tg_chat
 cp config.example.json config.json
 ```
