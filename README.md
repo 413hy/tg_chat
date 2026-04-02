@@ -68,3 +68,8 @@ go run ./cmd/bot -config config.json
 /save
 /restart_now
 ```
+
+
+## 一键查看部署命令
+
+详见 `docs/setup_alpine.md`（包含 Alpine 安装、构建、OpenRC 托管、更新重启命令）。
