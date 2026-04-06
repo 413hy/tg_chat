@@ -1,0 +1,12 @@
+{
+  "bot_token": "123456:telegram-bot-token",
+  "allowed_group_id": -1003457959751,
+  "admin_uids": [6977085303],
+  "trigger_word": "小助手",
+  "agent_file": "agents/default/system_prompt.md",
+  "model": {
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "sk-xxxx",
+    "model": "gpt-4o-mini"
+  }
+}
